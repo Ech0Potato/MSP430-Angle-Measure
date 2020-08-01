@@ -1,0 +1,45 @@
+//#include "codetab.h"
+#include <msp430.h> 
+#include "adxl345.h"
+#include "IIC.h"
+#include "led.h"
+#include "measure.h"
+#include "beep.h"
+#include "uart_self.h"
+#include "double2str.h"
+void System_Clock();
+
+extern DroneRTInfo RT_Info;
+int main(void)
+{
+    WDTCTL = WDTPW + WDTHOLD;                 // 关狗
+    System_Clock(); //16M主频
+
+ //====================INIT===========================
+    IIC_Init();
+
+    Init_ADXL345();
+    init_led(); //初始化led
+    init_beep();
+    UART_Init();
+    __enable_interrupt();
+    while(1)
+    {
+        on_led();
+        make_angle();
+        char str[20];
+
+        putstr("123\r\n");
+
+
+    }
+}
+
+void System_Clock()
+{
+    DCOCTL = 0x00;                          // Set DCOCLK to 16MHz
+    BCSCTL1 = CALBC1_16MHZ;
+    DCOCTL = CALDCO_16MHZ;
+}
+
+

@@ -1,0 +1,21 @@
+/*
+ * state.c
+ *
+ *  Created on: 2020Äê8ÔÂ1ÈÕ
+ *      Author: Ech0Potato
+ */
+#include<state.h>
+#include<measure.h>
+#include<uart_self.h>
+
+
+char state ;
+const char PLATFORM_UNREADY = 0;
+const char PLATFORM_READY = 1;
+
+void StateMeachine(void){
+
+
+}
+
+

@@ -1,0 +1,28 @@
+/*
+ * communicate.c
+ *
+ *  Created on: 2020Äê7ÔÂ31ÈÕ
+ *      Author: Ech0Potato
+ */
+
+
+#include<communicate.h>
+#include<string.h>
+
+char FeatureCode[] = "XD1010001";
+const char START_CODE[] = {0xE5};
+const char END_CODE[] = {0xE6};
+
+void Add_StartCode(char * str){
+    strcat(str,START_CODE);
+}
+
+void Add_EndCode(char * str){
+    strcat(str,)
+}
+
+
+
+
+
+

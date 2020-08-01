@@ -1,0 +1,1 @@
+"./IIC.obj" "./Uart.obj" "./adxl345.obj" "./beep.obj" "./communicate.obj" "./double2str.obj" "./led.obj" "./main.obj" "./measure.obj" "./state.obj" "./uart_self.obj" "../lnk_msp430g2553.cmd" -llibc.a 

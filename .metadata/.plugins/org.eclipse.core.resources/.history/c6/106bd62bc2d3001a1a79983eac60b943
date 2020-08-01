@@ -1,0 +1,63 @@
+/*
+ * communicate.c
+ *
+ *  Created on: 2020Äê7ÔÂ31ÈÕ
+ *      Author: Ech0Potato
+ */
+
+
+#include<communicate.h>
+#include<string.h>
+
+char FeatureCode[10] = "XD1010001";
+const char START_CODE[1] = {0xE5};
+const char END_CODE[1] = {0xE6};
+char Command_Help[1] = {0x00};
+char FCS_Help[1] = {0x00};
+char LEN_Help[1] = {0x00};
+
+
+void Add_StartCode(char * str){
+    strcat(str,START_CODE);
+}
+
+void Add_EndCode(char * str){
+    strcat(str,END_CODE);
+}
+
+void Add_CommandCode(char *str,char CommandCode){
+    Command_Help[0] = CommandCode;
+    strcat(str,Command_Help);
+}
+void Add_FCS(char * str){
+    int length = strlen(str);
+    length += 2 ; // With Origin , FCS and EndCode
+    length %= 256;
+    FCS_Help[0] = (char) length;
+    strcat(str,FCS_Help);
+}
+
+
+void Add_LengthAndData(char * str,char * data){
+    int length = strlen(data);
+    LEN_Help[0] = (char) length;
+    strcat(str,LEN_Help);
+    strcat(str,data);
+}
+
+void Send_FeatureCode(void){
+    char str[60];
+    memset(str,'\0',40);
+
+    Add_StartCode();
+    Add_CommandCode(str,0x05);
+    Add_LengthAndData(str,FeatureCode);
+    Add_FCS(str);
+    Add_EndCode(str);
+    putstr(str);
+}
+
+
+
+
+
