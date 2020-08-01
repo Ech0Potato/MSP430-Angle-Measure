@@ -109,7 +109,7 @@ void Send_Angle_A(void){
     }
     TempData[3] = Pitch & 0xFF;
 
-    if(Roll <0){
+    if(Pitch <0){
         TempData[4] = 0xFF;
     }else{
         TempData[4] = 0x00;
@@ -144,36 +144,21 @@ void Send_Angle_B(void){
     Add_CommandCode(str,0x42);
     make_angle();
 
-    int16_t Pitch,Roll,Yaw;
-    Pitch = (int16_t) RT_Info.B_Pitch;
-    Roll  = (int16_t) RT_Info.B_Roll;
-    Yaw  = (int16_t) RT_Info.B_Yaw;
+    int16_t Pitch1,Roll1,Yaw1;
+    Pitch1 = (int16_t) RT_Info.B_Pitch;
+    Roll1  = (int16_t) RT_Info.B_Roll;
+    Yaw1  = (int16_t) RT_Info.B_Yaw;
 
     char  TempData[7];
     memset(TempData,'\0',7);
 
 
-    if(Yaw < 0){
-        TempData[0] = 0xFF;}
-    else{
-        TempData[0] = 0x00;
-    }
-    TempData[1] = Yaw & 0xFF;
-
-    if(Pitch <0 ){
-    TempData[2] = 0xFF;
-    }else{
-        TempData[2] = 0x00;
-    }
-    TempData[3] = Pitch & 0xFF;
-
-    if(Roll <0){
-        TempData[4] = 0xFF;
-    }else{
-        TempData[4] = 0x00;
-    }
-
-    TempData[5] = Roll & 0xFF;
+    TempData[0] = (Yaw1 >> 8) && 0xFF;
+    TempData[1] = Yaw1 & 0xFF;
+    TempData[2] = (Pitch1 >> 8);
+    TempData[3] = Pitch1 & 0xFF;
+    TempData[4] = (Roll1 >> 8) && 0xFF;
+    TempData[5] = Roll1 & 0xFF;
 
     Add_LengthAndData_Angle(str,TempData,6);
 
