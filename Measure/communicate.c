@@ -5,11 +5,12 @@
  *      Author: Ech0Potato
  */
 
-
 #include<communicate.h>
 #include<string.h>
 #include<measure.h>
 #include<communicate.h>
+#include<stdint.h>
+
 
 extern DroneRTInfo RT_Info;
 char FeatureCode[10] = "XD1010001";
@@ -52,6 +53,19 @@ void Add_LengthAndData(char * str,char * data){
     strcat(str,data);
 }
 
+void Add_LengthAndData_Angle(char *  str,char *data, int num){
+    LEN_Help[0] = (char) num;
+    strcat(str,LEN_Help);
+    int cur_len = strlen(str);
+    while(cur_len --){
+         str ++ ;
+    }
+    int i ;
+    for(i=0; i<num; i++,data++,str++){
+        *str = *data;
+    }
+}
+
 void Send_FeatureCode(void){
     char str[60];
     memset(str,'\0',60);
@@ -72,9 +86,41 @@ void Send_Angle_A(void){
     Add_StartCode(str);
     Add_CommandCode(str,0x41);
     make_angle();
-    putstr("This is Angle_A \r\n");
+
+    int16_t Pitch,Roll,Yaw;
+    Pitch = (int16_t) RT_Info.Pitch;
+    Roll  = (int16_t) RT_Info.Roll;
+    Yaw   = (int16_t) RT_Info.Yaw;
+
+    char  TempData[7];
+    memset(TempData,'\0',7);
+
+
+    TempData[0] = (Yaw >> 8) && 0xFF;
+    TempData[1] = Yaw & 0xFF;
+    TempData[2] = (Pitch >> 8);
+    TempData[3] = Pitch & 0xFF;
+    TempData[4] = (Roll >> 8) && 0xFF;
+    TempData[5] = Roll & 0xFF;
+
+    Add_LengthAndData_Angle(str,TempData,6);
+
+    int i,sum;
+    for(i=1,sum=0; i<9;i++){
+        sum += str[i];
+    }
+    sum %= 256;
+    str[i++] = sum;
+
+    str[i] = 0xE6;
+
+    for(i=0; i<11; i++){
+        putchar(str[i]);
+    }
+    putstr("\r\n");
     //
 }
+
 
 void Send_Angle_B(void){
     char str[40];
@@ -83,9 +129,64 @@ void Send_Angle_B(void){
     Add_StartCode(str);
     Add_CommandCode(str,0x42);
     make_angle();
-    putstr("This is Angle_B \r\n");
 
+    int16_t Pitch1,Roll1,Yaw1;
+    Pitch1 = (int16_t) RT_Info.B_Pitch;
+    Roll1  = (int16_t) RT_Info.B_Roll;
+    Yaw1  = (int16_t) RT_Info.B_Yaw;
+
+    char  TempData[7];
+    memset(TempData,'\0',7);
+
+
+    TempData[0] = (Yaw1 >> 8) && 0xFF;
+    TempData[1] = Yaw1 & 0xFF;
+    TempData[2] = (Pitch1 >> 8);
+    TempData[3] = Pitch1 & 0xFF;
+    TempData[4] = (Roll1 >> 8) && 0xFF;
+    TempData[5] = Roll1 & 0xFF;
+
+    Add_LengthAndData_Angle(str,TempData,6);
+
+    int i,sum;
+    for(i=1,sum=0; i<9;i++){
+        sum += str[i];
+    }
+    sum %= 256;
+    str[i++] = sum;
+
+    str[i] = 0xE6;
+
+    for(i=0; i<11; i++){
+        putchar(str[i]);
+    }
+    putstr("\r\n");
     //
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+//void Send_Angle_B(void){
+//    char str[40];
+//    memset(str,'\0',40);
+//
+//    Add_StartCode(str);
+//    Add_CommandCode(str,0x42);
+//    make_angle();
+//    putstr("This is Angle_B \r\n");
+//
+//    //
+//}
 
 

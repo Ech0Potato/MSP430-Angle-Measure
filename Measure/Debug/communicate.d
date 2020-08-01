@@ -21,6 +21,10 @@ communicate.obj: D:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.3.LTS/include/mac
 communicate.obj: C:/Users/Ech0Potato/Desktop/Mearusre\ new/Measure/IIC.h
 communicate.obj: C:/Users/Ech0Potato/Desktop/Mearusre\ new/Measure/adxl345.h
 communicate.obj: C:/Users/Ech0Potato/Desktop/Mearusre\ new/Measure/beep.h
+communicate.obj: D:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.3.LTS/include/stdint.h
+communicate.obj: D:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.3.LTS/include/sys/stdint.h
+communicate.obj: D:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.3.LTS/include/machine/_stdint.h
+communicate.obj: D:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.3.LTS/include/sys/_stdint.h
 
 ../communicate.c: 
 C:/Users/Ech0Potato/Desktop/Mearusre\ new/Measure/communicate.h: 
@@ -43,3 +47,7 @@ D:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.3.LTS/include/machine/_limits.h:
 C:/Users/Ech0Potato/Desktop/Mearusre\ new/Measure/IIC.h: 
 C:/Users/Ech0Potato/Desktop/Mearusre\ new/Measure/adxl345.h: 
 C:/Users/Ech0Potato/Desktop/Mearusre\ new/Measure/beep.h: 
+D:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.3.LTS/include/stdint.h: 
+D:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.3.LTS/include/sys/stdint.h: 
+D:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.3.LTS/include/machine/_stdint.h: 
+D:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.3.LTS/include/sys/_stdint.h: 

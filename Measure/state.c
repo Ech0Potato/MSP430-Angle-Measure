@@ -11,17 +11,18 @@
 #include<uart_self.h>
 #include<beep.h>
 #include<communicate.h>
-
+#include<IIC.h>
 const char OUTER_READY[6] = {0xE5,0x01,0x00,0x01,0xE6};
 const char OUTER_READY_2[7] = {0xE5,0x06,0x01,0x04,0x0A,0xE6};
 const char ONLY_A[7] = {0xE5,0x49,0x01,0x01,0x4B,0xE6};
 const char TOTAL_A_B[7] = {0xE5,0x49,0x01,0x02,0x4C,0xE6};
-const char MISSION_BACK[6] = {0xE5,0x4B,0x00,0x4B,0xE6};
+const char STEP_BACK[6] = {0xE5,0x4B,0x00,0x4B,0xE6};
+const char STEP_FINISH_0_1[3]={0xE5,0x4A,'\0'};
+const char MISSION_FINISH_0_1[3]={0xE5,0x4C,'\0'};
+
 const char MISSION_NEXT[8] = {0xE5,0x4C,0x02,0x01,0x00,0x4F,0xE6};
 const char MISSION_END[6] = {0xE5,0x4D,0x00,0x4D,0xE6};
 const char STEP_END[7]= {0xE5,0x4A,0x01,0x01,0x4C,0xE6};
-
-
 
 char state ;
 const char PLATFORM_UNREADY = 0;
@@ -61,15 +62,18 @@ void Command_Handler(char * command){
          send_flag = ONLY_SEND_A;
     }else if(strcmp(command,TOTAL_A_B) == 0){
          send_flag = SEND_BOTH_A_B;
-    }else if(strcmp(command,MISSION_BACK) == 0){
-         putstr("MISSION_BACK\r\n");
+    }else if(strcmp(command,STEP_BACK) == 0){
          long_beep();
-    }else if(strcmp(command,MISSION_NEXT) == 0){
-         putstr("MISSION_NEXT\r\n");
-    }else if(strcmp(command,MISSION_END) == 0){
+    }else if(memcmp(command,MISSION_FINISH_0_1,2) == 0){
+
          work_flag = IDLE;
-    }else if(strcmp(command,STEP_END) == 0){
-         putstr("STEP_END\r\n");
+         if(command[4]!=0){  // 如果之前的任务有错误，则响一长一短
+             long_short_beep();
+         }else{
+             two_short_beep(); // 如果之前的任务没有错误，则响两次
+         }
+
+    }else if(memcmp(command,STEP_FINISH_0_1,2) == 0){
          short_beep();
     }
     else{

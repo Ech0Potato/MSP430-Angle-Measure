@@ -1,0 +1,126 @@
+/*
+ * state.c
+ *
+ *  Created on: 2020Äê8ÔÂ1ÈÕ
+ *      Author: Ech0Potato
+ */
+#include<string.h>
+#include<msp430.h>
+#include<state.h>
+#include<measure.h>
+#include<uart_self.h>
+#include<beep.h>
+#include<communicate.h>
+
+const char OUTER_READY[6] = {0xE5,0x01,0x00,0x01,0xE6};
+const char OUTER_READY_2[7] = {0xE5,0x06,0x01,0x04,0x0A,0xE6};
+const char ONLY_A[7] = {0xE5,0x49,0x01,0x01,0x4B,0xE6};
+const char TOTAL_A_B[7] = {0xE5,0x49,0x01,0x02,0x4C,0xE6};
+const char STEP_BACK[6] = {0xE5,0x4B,0x00,0x4B,0xE6};
+const char STEP_FINISH_0_1[3]={0xE5,0x4A,'\0'};
+const char MISSION_FINISH_0_1[3]={0xE5,0x4C,'\0'};
+
+const char MISSION_NEXT[8] = {0xE5,0x4C,0x02,0x01,0x00,0x4F,0xE6};
+const char MISSION_END[6] = {0xE5,0x4D,0x00,0x4D,0xE6};
+const char STEP_END[7]= {0xE5,0x4A,0x01,0x01,0x4C,0xE6};
+
+char state ;
+const char PLATFORM_UNREADY = 0;
+const char PLATFORM_READY = 1;
+
+//void StateMeachine(void){
+//    switch state:
+//
+//    case PLATFORM_UNREADY :
+//        break;
+//
+//    case PLATFORM_READY :
+//
+//
+//}
+
+char buffer[40];
+const int END = 1;
+const int NOT_END = 0;
+int buffer_index = 0;
+
+int work_flag;
+const int IDLE = 0;
+const int WORKING = 1;
+
+int send_flag;
+const int ONLY_SEND_A = 1;
+const int SEND_BOTH_A_B = 0;
+
+
+void Command_Handler(char * command){
+    if(strcmp(command,OUTER_READY) == 0){
+         Send_FeatureCode();
+    }else if(strcmp(command,OUTER_READY_2) == 0){
+         work_flag = WORKING;
+    }else if(strcmp(command,ONLY_A) == 0){
+         send_flag = ONLY_SEND_A;
+    }else if(strcmp(command,TOTAL_A_B) == 0){
+         send_flag = SEND_BOTH_A_B;
+    }else if(strcmp(command,STEP_BACK) == 0){
+         long_beep();
+    }else if(strcmp(command,MISSION_NEXT) == 0){
+    }else if(memcmp(command,MISSION_FINISH_0_1,2) == 0){
+
+         work_flag = IDLE;
+         if(command[4]!=0){
+             long_beep();
+         }else{
+
+         }
+
+    }else if(memcmp(command,STEP_FINISH_0_1,2) == 0){
+         short_beep();
+    }
+    else{
+        putstr("FUCK U!\r\n");
+    }
+}
+
+
+void Buffer_Init(void){
+    buffer_index = 0;
+}
+
+void StateMachine_Init(void){
+    Buffer_Init();
+    work_flag = IDLE;
+    send_flag = SEND_BOTH_A_B;
+}
+
+void StateMachine(void){
+    if(work_flag == IDLE){
+           ;
+    }else{
+       if(send_flag == SEND_BOTH_A_B){
+           Send_Angle_A();
+           Send_Angle_B();
+       }else{
+           Send_Angle_A();
+       }
+    }
+}
+#pragma vector = USCIAB0RX_VECTOR
+__interrupt void USCI0RX_ISR(void){
+    while (!(IFG2&UCA0TXIFG));
+    char RX_DATA=UCA0RXBUF;
+    buffer[buffer_index] = RX_DATA;
+    if(buffer_index == 40){
+        putstr("BUFFER FULL! \r\n");
+        memset(buffer,'\0',40);
+        buffer_index= 0;
+    }
+    if(RX_DATA == 0xE6){
+        buffer_index = 0;
+        Command_Handler(buffer);
+        memset(buffer,'\0',40);
+    }else{
+        buffer_index ++ ;
+    }
+}
+

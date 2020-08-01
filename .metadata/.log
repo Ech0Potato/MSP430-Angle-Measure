@@ -857,3 +857,55 @@ Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.
 
 !ENTRY org.eclipse.launchbar.core 2 0 2020-08-01 15:27:41.230
 !MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+!SESSION 2020-08-01 21:04:54.686 -----------------------------------------------
+eclipse.buildId=4.7.3.M20180301-0715
+java.version=1.8.0_112
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=zh_CN
+Framework arguments:  -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.branding.product
+
+!ENTRY org.eclipse.core.resources 2 10035 2020-08-01 21:04:59.857
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY com.ti.common.core 4 0 2020-08-01 21:04:59.906
+!MESSAGE path=ccs_base/DebugServer
+
+!ENTRY com.ti.common.core 4 0 2020-08-01 21:04:59.907
+!MESSAGE debugServerDir=D:/ti/ccsv8/ccs_base/DebugServer
+
+!ENTRY org.eclipse.launchbar.core 2 0 2020-08-01 21:05:10.087
+!MESSAGE Enablement expression is missing for descriptor type org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2020-08-01 21:05:10.096
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2020-08-01 21:05:10.096
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY com.ti.ccstudio.debug.server 4 214294189 2020-08-01 21:05:10.627
+!MESSAGE Unexpected CCS exit detected [20-8-1 下午3:27]!!!
+
+!ENTRY com.ti.ccstudio.debug 1 0 2020-08-01 21:05:33.830
+!MESSAGE DS_ERROR: MSP430: Error initializing emulator: Interface Communication error
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2020-08-01 21:05:33.983
+!MESSAGE DS_ERROR: Error initializing emulator:
+Interface Communication error
+
+!ENTRY com.ti.ccstudio.debug 1 0 2020-08-01 21:05:39.977
+!MESSAGE DS_ERROR: MSP430: Error initializing emulator: Interface Communication error
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2020-08-01 21:05:39.989
+!MESSAGE DS_ERROR: Error initializing emulator:
+Interface Communication error
+
+!ENTRY com.ti.ccstudio.debug 1 0 2020-08-01 21:05:43.469
+!MESSAGE DS_ERROR: MSP430: Error initializing emulator: Interface Communication error
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2020-08-01 21:05:43.482
+!MESSAGE DS_ERROR: Error initializing emulator:
+Interface Communication error

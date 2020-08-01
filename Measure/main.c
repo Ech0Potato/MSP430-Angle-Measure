@@ -30,24 +30,6 @@ int main(void)
     while(1)
     {
         StateMachine();
-//        on_led();
-//        make_angle();
-//        Send_FeatureCode();
-//        putstr("\r\n");
-//        putstr("\r\n");
-
-        //short_long_change();
-//        make_angle();
-//        putstr("Pitch: ");
-//        int2str((int)RT_Info.Pitch,str);
-//        putstr(str);
-//        putstr(" Roll: ");
-//        int2str((int)RT_Info.Roll,str);
-//        putstr(str);
-//        putstr(" Yaw: ");
-//        int2str((int)RT_Info.Yaw,str);
-//        putstr(str);
-//        putstr("\r\n");
     }
 }
 

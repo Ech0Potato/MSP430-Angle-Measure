@@ -47,3 +47,15 @@ void short_long_change(void){
     Delay_ms(1000);
 }
 
+void two_short_beep(void){
+    short_beep();
+    Delay_ms(100);
+    short_beep();
+}
+
+void long_short_beep(void){
+    long_beep();
+    Delay_ms(100);
+    short_beep();
+}
+

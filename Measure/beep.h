@@ -19,5 +19,7 @@ extern void beep(void);
 void long_beep(void);
 void short_beep(void);
 void short_long_change(void);
+void two_short_beep(void);
+void long_short_beep(void);
 
 #endif /* BEEP_H_ */

@@ -20,5 +20,6 @@ void Add_CommandCode(char *str,char CommandCode);
 void Send_FeatureCode(void);
 void Send_Angle_A(void);
 void Send_Angle_B(void);
+void Add_LengthAndData_Angle(char *str,char *data, int num);
 
 #endif /* COMMUNICATE_H_ */
