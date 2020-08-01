@@ -21,6 +21,7 @@ state.obj: C:/Users/Ech0Potato/Desktop/Mearusre\ new/Measure/IIC.h
 state.obj: C:/Users/Ech0Potato/Desktop/Mearusre\ new/Measure/adxl345.h
 state.obj: C:/Users/Ech0Potato/Desktop/Mearusre\ new/Measure/beep.h
 state.obj: C:/Users/Ech0Potato/Desktop/Mearusre\ new/Measure/uart_self.h
+state.obj: C:/Users/Ech0Potato/Desktop/Mearusre\ new/Measure/communicate.h
 
 ../state.c: 
 D:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.3.LTS/include/string.h: 
@@ -43,3 +44,4 @@ C:/Users/Ech0Potato/Desktop/Mearusre\ new/Measure/IIC.h:
 C:/Users/Ech0Potato/Desktop/Mearusre\ new/Measure/adxl345.h: 
 C:/Users/Ech0Potato/Desktop/Mearusre\ new/Measure/beep.h: 
 C:/Users/Ech0Potato/Desktop/Mearusre\ new/Measure/uart_self.h: 
+C:/Users/Ech0Potato/Desktop/Mearusre\ new/Measure/communicate.h: 

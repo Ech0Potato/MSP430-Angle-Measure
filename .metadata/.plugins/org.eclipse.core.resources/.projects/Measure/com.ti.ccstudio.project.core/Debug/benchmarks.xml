@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <body>
 	<version>1</version>
-	<timestamp>0x5f2528c0</timestamp>
+	<timestamp>0x5f252e81</timestamp>
 	<menu>
 		<menu_item option="--opt_for_speed" description="Control Speed vs Size"/>
 		<menu_item option="--opt_level" description="Optimization Level"/>

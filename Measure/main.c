@@ -20,18 +20,18 @@ int main(void)
 
  //====================INIT===========================
     IIC_Init();
-    Buffer_Init();
+
     Init_ADXL345();
     init_led(); //≥ı ºªØled
     init_beep();
     UART_Init();
-
+    StateMachine_Init();
     __enable_interrupt();
     while(1)
     {
-
-        on_led();
-        make_angle();
+        StateMachine();
+//        on_led();
+//        make_angle();
 //        Send_FeatureCode();
 //        putstr("\r\n");
 //        putstr("\r\n");

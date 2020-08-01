@@ -30,14 +30,14 @@ void putchar(unsigned char tx_data) //发送字符函数
 
 void putstr(char *s)//发送字符串函数
 {
-IE2 &= ~UCA0RXIE;//发送时先关闭接收中断，不接收
+//IE2 &= ~UCA0RXIE;//发送时先关闭接收中断，不接收
 //如果没有发完，就继续循环发送
 while((*s)!='\0')
 {
-putchar(*s);
-s++;
+    putchar(*s);
+    s++;
 }
-IE2 |= UCA0RXIE; //发送完了打开接收中断
+    IE2 |= UCA0RXIE; //发送完了打开接收中断
 }
 
 void receive(char x){

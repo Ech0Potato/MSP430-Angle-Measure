@@ -9,6 +9,7 @@
 #include<communicate.h>
 #include<string.h>
 #include<measure.h>
+#include<communicate.h>
 
 extern DroneRTInfo RT_Info;
 char FeatureCode[10] = "XD1010001";
@@ -33,12 +34,16 @@ void Add_CommandCode(char *str,char CommandCode){
 }
 void Add_FCS(char * str){
     int length = strlen(str);
-    length += 2 ; // With Origin , FCS and EndCode
-    length %= 256;
-    FCS_Help[0] = (char) length;
+    int sum = 0;
+    int i=0;
+    for(i = 1 ; i<length; i++){
+        sum += str[i];
+    }
+     // With Origin , FCS and EndCode
+    sum %= 256;
+    FCS_Help[0] = (char) sum;
     strcat(str,FCS_Help);
 }
-
 
 void Add_LengthAndData(char * str,char * data){
     int length = strlen(data);
@@ -67,6 +72,7 @@ void Send_Angle_A(void){
     Add_StartCode(str);
     Add_CommandCode(str,0x41);
     make_angle();
+    putstr("This is Angle_A \r\n");
     //
 }
 
@@ -77,6 +83,7 @@ void Send_Angle_B(void){
     Add_StartCode(str);
     Add_CommandCode(str,0x42);
     make_angle();
+    putstr("This is Angle_B \r\n");
 
     //
 }

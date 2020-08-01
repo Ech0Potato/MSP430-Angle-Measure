@@ -18,5 +18,7 @@ void Add_FCS(char * str);
 void Add_LengthAndData(char * str,char * data);
 void Add_CommandCode(char *str,char CommandCode);
 void Send_FeatureCode(void);
+void Send_Angle_A(void);
+void Send_Angle_B(void);
 
 #endif /* COMMUNICATE_H_ */
