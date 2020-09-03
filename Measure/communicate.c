@@ -13,7 +13,7 @@
 
 
 extern DroneRTInfo RT_Info;
-char FeatureCode[10] = "XD1010001";
+char FeatureCode[10] = "XD1040036";
 const char START_CODE[2] = {0xE5};
 const char END_CODE[2] = {0xE6};
 char Command_Help[2] = {0x00};
@@ -131,7 +131,7 @@ void Send_Angle_A(void){
     for(i=0; i<11; i++){
         putchar(str[i]);
     }
-    putstr("\r\n");
+
     //
 }
 
@@ -189,7 +189,7 @@ void Send_Angle_B(void){
     for(i=0; i<11; i++){
         putchar(str[i]);
     }
-    putstr("\r\n");
+
     //
 }
 

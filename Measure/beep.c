@@ -34,6 +34,11 @@ void long_beep(void){
     off_beep();
 }
 
+void small_beep (void){
+    on_beep();
+    Delay_ms(50);
+    off_beep();
+}
 void short_beep(void){
     on_beep();
     Delay_ms(200);

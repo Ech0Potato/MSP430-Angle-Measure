@@ -17,7 +17,7 @@ void UART_Init(){
       UCA0MCTL = UCBRS0;                        // Modulation UCBRSx = 1
       UCA0CTL1 &= ~UCSWRST;                     // **Initialize USCI state machine**
       IE2 |= UCA0RXIE;                     // Enable USCI_A0 RX interrupt
-      putchar('1');
+//      putchar('1');
 //      __bis_SR_register(LPM0_bits+GIE);
 }
 
